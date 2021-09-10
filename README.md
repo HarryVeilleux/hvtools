@@ -4,6 +4,14 @@ Really short functions I use all the time. Most of them barely qualify as beginn
 
 All of these (except awake) have widely-used (and likely better) solutions available. These are just my quick-and-dirty functions that are good enough for government work.
 
+# Installation
+
+From your shell of choice, run
+
+```bash
+pip install git+https://github.com/HarryVeilleux/hvtools.git
+```
+
 ## awake
 
 Keeps your computer awake and tricks some chat apps (Skype, Teams) into thinking you're online by using pyautogui to press volumeup, wait (default 150 seconds), press volumedown, wait, then loop until user exits.
