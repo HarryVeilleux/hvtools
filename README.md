@@ -44,7 +44,7 @@ Reads a JSON file into a dictionary. Specify key/keys to subset the return. Set 
 
 Dumps a dictionary into a JSON file with indent=4. Overwrites without warning.
 
-### awake
+### wake
 
 Keeps your computer awake and tricks some chat apps (Skype, Teams) into thinking you're online by using pyautogui to press volumeup, wait (default 150 seconds), press volumedown, wait, then loop until user exits.
 
