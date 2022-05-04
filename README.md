@@ -1,6 +1,6 @@
 # HV Tools
 
-Really short functions I use all the time. All of these (except awake) already have widely-used solutions available. These are just my quick-and-dirty functions that are good enough for government work.
+Really short functions I use all the time. All of these already have widely-used solutions available. These are just my quick-and-dirty functions.
 
 ## Installation
 
@@ -18,7 +18,7 @@ In Python environment, run
 import hvtools
 ```
 
-Everything is a function defined in __init__.py, so import explicitly if you want.
+Everything is a function defined in \_\_init\_\_.py, so import explicitly if you want.
 
 ### input_to_list
 
@@ -43,9 +43,3 @@ Reads a JSON file into a dictionary. Specify key/keys to subset the return. Set 
 ### dict_to_json
 
 Dumps a dictionary into a JSON file with indent=4. Overwrites without warning.
-
-### wake
-
-Keeps your computer awake and tricks some chat apps (Skype, Teams) into thinking you're online by using pyautogui to press volumeup, wait (default 150 seconds), press volumedown, wait, then loop until user exits.
-
-I have only tested this for Skype and Teams. I have no idea if it works for Slack, Google apps, etc. Please let me know if you confirm one way or the other.

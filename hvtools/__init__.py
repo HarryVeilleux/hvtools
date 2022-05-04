@@ -1,6 +1,4 @@
 import json
-import pyautogui
-import time
 from typing import Any, List, Sequence
 
 def csv_to_list(infile: str) -> List[List[str]]:
@@ -61,11 +59,3 @@ def input_to_list() -> List[str]:
         while next_el:=input():
             yield next_el
     return list(prompt())
-
-def wake(wtime: int = 150) -> None:
-    """Alternate volumeup/volumedown key presses."""
-    while True:
-        pyautuogui.press('volumeup')
-        time.sleep(wtime)
-        pyautogui.press('volumedown')
-        time.sleep(wtime)
