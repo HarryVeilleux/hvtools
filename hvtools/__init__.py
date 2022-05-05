@@ -57,5 +57,5 @@ def list_to_csv(outlist: Sequence[Sequence[str]], outfile: str) -> int:
     if len(rlens:=set(len(r) for r in outlist)) > 1:
         rlen=max(rlens)
         outlist = ((',').join(r+['']*(rlen-len(r))) for r in outlist)
-    outstr = ('\n').join([r if isinstance(r,str) else (',').join(r) for r in outlist])
+    outstr = ('\n').join(r if isinstance(r,str) else (',').join(r) for r in outlist)
     return pathlib.Path(outfile).write_text(outstr)
