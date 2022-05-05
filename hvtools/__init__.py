@@ -1,4 +1,5 @@
 import json
+import pathlib
 from typing import Any, List, Sequence
 
 def csv_to_list(infile: str) -> List[List[str]]:
@@ -6,16 +7,19 @@ def csv_to_list(infile: str) -> List[List[str]]:
     Parse contents of csv into list of strings (if one value per row) or lists
         (if multiple).
     """
-    with open(infile,'r') as f:
-        return [r.split(',') if ',' in r else r for r in f.read().split('\n') if r]
+    inrows = pathlib.Path(infile).read_text().split('\n')
+    return [r.split(',') if ',' in r else r for r in inrows if r]
 
-def list_to_csv(outlist: Sequence[Sequence[str]], outfile: str) -> int:
-    """Write sequence of strings (or sequence of sequences of strings) to csv file."""
-    if len(rlens:=set(len(r) for r in outlist)) > 1:
-        rlen=max(rlens)
-        outlist = ((',').join(r+['']*(rlen-len(r))) for r in outlist)
-    with open(outfile,'w+') as f:
-        return f.write(('\n').join([r if isinstance(r,str) else (',').join(r) for r in outlist]))
+def dict_to_json(outdict: dict, outfile: str) -> int:
+    """Dump Python dictionary into JSON file (overwrites existing)."""
+    return pathlib.Path(outfile).write_text(json.dumps(outdict,indent=4))
+
+def input_to_list() -> List[str]:
+    """Generate list of non-empty user inputs."""
+    def prompt():
+        while next_el:=input():
+            yield next_el
+    return list(prompt())
 
 def json_to_dict(infile: str, key: str = '', keys: Sequence[str] = [],
                  ignore_fnf: bool = True, ignore_missing: bool = False) -> Any:
@@ -48,14 +52,10 @@ def json_to_dict(infile: str, key: str = '', keys: Sequence[str] = [],
     else:
         return d
 
-def dict_to_json(outdict: dict, outfile: str) -> int:
-    """Dump Python dictionary into JSON file (overwrites existing)."""
-    with open(outfile, 'w+') as f:
-        return f.write(json.dumps(outdict,indent=4))
-
-def input_to_list() -> List[str]:
-    """Generate list of non-empty user inputs."""
-    def prompt():
-        while next_el:=input():
-            yield next_el
-    return list(prompt())
+def list_to_csv(outlist: Sequence[Sequence[str]], outfile: str) -> int:
+    """Write sequence of strings (or sequence of sequences of strings) to csv file."""
+    if len(rlens:=set(len(r) for r in outlist)) > 1:
+        rlen=max(rlens)
+        outlist = ((',').join(r+['']*(rlen-len(r))) for r in outlist)
+    outstr = ('\n').join([r if isinstance(r,str) else (',').join(r) for r in outlist])
+    return pathlib.Path(outfile).write_text(outstr)
